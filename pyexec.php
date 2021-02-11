@@ -10,14 +10,14 @@
 		$check = ($string[0][0] == '>' && ($string[1][0] == 'A' || $string[1][0] == 'C' || $string[1][0] == 'T' || $string[1][0] == 'G'));
 		
 		if($check){
-			$arquivo = fopen('C:/Users/victo/Desktop/TCC/Finder/TRVarDetector/trf/testar.fasta','w');
+			$arquivo = fopen('/var/www/html/trvarfinder/py/trf/testar.fasta','w');
 
 			if($arquivo != false){
 				fwrite($arquivo, strtoupper($_POST['fasta']));
 				fclose($arquivo);
 
 				$caminho = dirname(__FILE__);
-				$command = "py C:\\Users\\victo\\Desktop\\TCC\\Finder\\TRVarDetector\\main.py C:/Users/victo/Desktop/TCC/Finder/TRVarDetector/trf/testar.fasta";
+				$command = "python /var/www/html/trvarfinder/py/trf/main.py /var/www/html/trvarfinder/py/trf/testar.fasta";
 				$output = passthru($command);
 
 				header("location: resultados");

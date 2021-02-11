@@ -1,6 +1,6 @@
 <?php
 
-	$str = file_get_contents('C:/Users/victo/Desktop/TCC/Finder/TRVarDetector/trf/resultados.json');	
+	$str = file_get_contents('/var/www/html/trvarfinder/py/trf/resultados.json');	
 	$json = json_decode($str, true); 
 ?>
 
