@@ -1,0 +1,6 @@
+RewriteEngine On
+
+RewriteRule ^home$ index.php
+RewriteRule ^pyexec$ pyexec.php
+RewriteRule ^resultados$ resultados.php
+RewriteRule ^sobre$ sobre.php
