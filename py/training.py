@@ -25,7 +25,7 @@ class Training(object):
             for file in files:
                 if re.match(".+\d\.csv", file):
                     with open('/var/www/trvarfinder.com.br/public_html/py/trf/' + file, "r") as saida_file:
-                        #Escreve no arquivo o conteúdo:
+                        #Escreve no arquivo o contedo:
                         output.writelines(saida_file)
                     os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
 
@@ -56,7 +56,7 @@ class Training(object):
 
         files = os.listdir('/var/www/trvarfinder.com.br/public_html/py/trf/')
 
-        #deleta os .txt que não estão sendo utilizados
+        #deleta os .txt que no estão sendo utilizados
         for file in files:
             if re.match(".+\.txt\.html", file):
                 os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
@@ -70,13 +70,13 @@ class Training(object):
         tr_table_out = []
 
         if training_mode == 1:
-            #conta quantos arquivos .csv já existem no diretório, para não sobrescrever
+            #conta quantos arquivos .csv j existem no diretrio, para no sobrescrever
             num_csv = 0
             for file in files:
                 if re.match(".+\.csv", file):
                     num_csv += 1
 
-            #conta quantos arquivos de entrada .hmtl e saída .csv serão usados
+            #conta quantos arquivos de entrada .hmtl e sada .csv sero usados
             i = num_csv
             for file in files:
                 if re.match(".+\.html", file):
@@ -101,7 +101,7 @@ class Training(object):
             self.__create_csv_file('/var/www/trvarfinder.com.br/public_html/py/trf/' + file, tr_table_out[i], i, variable)
             i += 1
 
-        #se não for treinamento, ao rodar o TRF já realiza a classificação/regressão
+        #se no for treinamento, ao rodar o TRF j realiza a classificao/regresso
         if training_mode == 0:
             self.run_test()
 
@@ -139,7 +139,7 @@ class Training(object):
         for row in repeats_table.findAll("tr"):  # para tudo que estiver em <tr>
             cells = row('td')  # encontra todos os TDs
 
-            if len(cells) == 12 and cells[0].find(text=True) != "Indices":  # número de colunas
+            if len(cells) == 12 and cells[0].find(text=True) != "Indices":  # nmero de colunas
                 repeat_id.append(i)
                 i += 1
 
