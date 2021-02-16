@@ -30,11 +30,11 @@ class Training(object):
                     os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
 
         #treina o algoritmo com o saida treinamento
-        knn.do_train("/var/www/trvarfinder.com.br/public_html/py/saida_treinamento.csv")
+        knn.do_train("/var/www/trvarfinder.com.br/public_html/py/trf/saida_treinamento.csv")
 
     def run_test(self):
         #cria um arquivo de saida para o treinamento
-        with open('/var/www/trvarfinder.com.br/public_html/py/saida_teste.csv', "w") as output:
+        with open('/var/www/trvarfinder.com.br/public_html/py/trf/saida_teste.csv', "w") as output:
             files = os.listdir('/var/www/trvarfinder.com.br/public_html/py/trf/')
 
             #para cada arquivo de teste, inclui no arquivo final de teste

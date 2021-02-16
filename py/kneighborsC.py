@@ -44,7 +44,7 @@ class KneighborsC(object):
         #salva os dados como resultados.json, dropa a coluna VAR e adiciona a coluna PREDICTION
         testBackup.drop(['var'], 1, inplace=True)
         testBackup['prediction'] = prediction
-        testBackup.to_json('C:/Users/victo/Desktop/TCC/Finder/TRVarDetector/trf/resultados.json')
+        testBackup.to_json('/var/www/trvarfinder.com.br/public_html/py/trf/resultados.json')
 
     def do_train(self, train_csv):
         global knc
