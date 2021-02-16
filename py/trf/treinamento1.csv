@@ -1,0 +1,4 @@
+repeat_id,start,end,period,copy_number,consensus_size,purity,indels,trf_score,a,c,t,g,entropy,var
+0,168,362,27,8.2,27,53,27,87,32,22,36,8,1.84,1
+1,196,450,45,5.7,45,93,0,405,33,22,36,7,1.82,1
+2,203,495,90,3.2,88,78,7,312,33,22,36,7,1.82,1
