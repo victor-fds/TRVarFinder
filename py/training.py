@@ -41,7 +41,7 @@ class Training(object):
             for file in files:
                 if re.match("teste.\.csv", file):
                     with open('/var/www/trvarfinder.com.br/public_html/py/trf/' + file, "r") as saida_file:
-                        # Escreve no arquivo o conteúdo:
+                        # Escreve no arquivo o conteudo:
                         output.writelines(saida_file)
                     os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
 
@@ -56,7 +56,7 @@ class Training(object):
 
         files = os.listdir('/var/www/trvarfinder.com.br/public_html/py/trf/')
 
-        #deleta os .txt que no estão sendo utilizados
+        #deleta os .txt que no esto sendo utilizados
         for file in files:
             if re.match(".+\.txt\.html", file):
                 os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
