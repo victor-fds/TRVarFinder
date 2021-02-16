@@ -41,7 +41,11 @@ class Training(object):
             for file in files:
                 if re.match("teste.\.csv", file):
                     with open('/var/www/trvarfinder.com.br/public_html/py/trf/' + file, "r") as saida_file:
+<<<<<<< HEAD
                         # Escreve no arquivo o contedo:
+=======
+                        # Escreve no arquivo o conteudo:
+>>>>>>> eb294d3c4c1deaf4ab2e6139438ef647e119e956
                         output.writelines(saida_file)
                     os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
 
