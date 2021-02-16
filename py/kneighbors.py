@@ -12,7 +12,7 @@ class Kneighbors(object):
 
     def do_test(self, test_csv):
         global knr
-        example = pd.read_csv('trf/saida_teste.csv')
+        example = pd.read_csv('/var/www/trvarfinder.com.br/public_html/py/trf/saida_teste.csv')
         example.drop(['repeat_id'], 1, inplace=True)
         example.drop(['start'], 1, inplace=True)
         example.drop(['end'], 1, inplace=True)

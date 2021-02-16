@@ -10,14 +10,14 @@
 		$check = ($string[0][0] == '>' && ($string[1][0] == 'A' || $string[1][0] == 'C' || $string[1][0] == 'T' || $string[1][0] == 'G'));
 		
 		if($check){
-			$arquivo = fopen('/var/www/html/trvarfinder/py/trf/testar.fasta','w');
+			$arquivo = fopen('/var/www/trvarfinder.com.br/public_html/py/trf/testar.fasta','w');
 
 			if($arquivo != false){
 				fwrite($arquivo, strtoupper($_POST['fasta']));
 				fclose($arquivo);
 
 				$caminho = dirname(__FILE__);
-				$command = "python /var/www/html/trvarfinder/py/trf/main.py /var/www/html/trvarfinder/py/trf/testar.fasta";
+				$command = "python /var/www/trvarfinder.com.br/public_html/py/trf/main.py /var/www/trvarfinder.com.br/public_html/py/trf/testar.fasta";
 				$output = passthru($command);
 
 				header("location: resultados");
@@ -34,6 +34,7 @@
 	<head>
 		<!-- CSS only -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+		<title>Buscando resultados... | TRVarFinder</title>
 	</head>
 
 	<body>

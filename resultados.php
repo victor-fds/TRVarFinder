@@ -1,6 +1,6 @@
 <?php
 
-	$str = file_get_contents('/var/www/html/trvarfinder/py/trf/resultados.json');	
+	$str = file_get_contents('/var/www/trvarfinder.com.br/public_html/py/trf/resultados.json');	
 	$json = json_decode($str, true); 
 ?>
 
@@ -9,6 +9,7 @@
 	<head>
 		<!-- CSS only -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+		<title>Resultados | TRVarFinder</title>
 	</head>
 
 	<body>
