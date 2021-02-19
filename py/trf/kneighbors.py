@@ -27,7 +27,7 @@ class Kneighbors(object):
 
         print("Resultados")
         prediction = knr.predict(teste)
-        print("Score provável: " + str(knr.score(teste, example['var'])))
+        print("Score provavel: " + str(knr.score(teste, example['var'])))
         print(prediction)
         print(example['var'])
         print("-----")

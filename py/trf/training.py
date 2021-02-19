@@ -25,7 +25,7 @@ class Training(object):
             for file in files:
                 if re.match(".+\d\.csv", file):
                     with open('/var/www/trvarfinder.com.br/public_html/py/trf/' + file, "r") as saida_file:
-                        #Escreve no arquivo o contedo:
+                        #Escreve no arquivo o conteudo:
                         output.writelines(saida_file)
                     os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
 
@@ -43,7 +43,6 @@ class Training(object):
                     with open('/var/www/trvarfinder.com.br/public_html/py/trf/' + file, "r") as saida_file:
                         # Escreve no arquivo o conteudo:
                         output.writelines(saida_file)
-
                     os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
 
 
@@ -57,7 +56,7 @@ class Training(object):
 
         files = os.listdir('/var/www/trvarfinder.com.br/public_html/py/trf/')
 
-        #deleta os .txt que no esto sendo utilizados
+        #deleta os .txt que no estao sendo utilizados
         for file in files:
             if re.match(".+\.txt\.html", file):
                 os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
@@ -102,7 +101,7 @@ class Training(object):
             self.__create_csv_file('/var/www/trvarfinder.com.br/public_html/py/trf/' + file, tr_table_out[i], i, variable)
             i += 1
 
-        #se no for treinamento, ao rodar o TRF j realiza a classificao/regresso
+        #se no for treinamento, ao rodar o TRF j realiza a classificao/regreso
         if training_mode == 0:
             self.run_test()
 
@@ -137,9 +136,7 @@ class Training(object):
         var = []
 
         i = 0
-
-        repeats_table = repeats_table.find_all('tr')
-        for row in repeats_table:  # para tudo que estiver em <tr>
+        for row in repeats_table.findAll("tr"):  # para tudo que estiver em <tr>
             cells = row('td')  # encontra todos os TDs
 
             if len(cells) == 12 and cells[0].find(text=True) != "Indices":  # nmero de colunas
