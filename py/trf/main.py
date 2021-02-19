@@ -22,7 +22,7 @@ def clean_csv_from_path():
 
 clean_csv_from_path()
 
-print("teste " + sys.argv[1])
+#print("teste " + sys.argv[1])
 
 tr_class = training.Training()
 

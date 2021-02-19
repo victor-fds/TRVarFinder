@@ -29,6 +29,19 @@ class Training(object):
                         output.writelines(saida_file)
                     os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
 
+        buffer = ""
+        with open('/var/www/trvarfinder.com.br/public_html/py/trf/saida_treinamento.csv', "r") as entrada:
+            buffer = entrada.readlines()
+            entrada.close()
+
+        with open('/var/www/trvarfinder.com.br/public_html/py/trf/saida_treinamento.csv', "w") as entrada:
+            entrada.writelines(
+                "repeat_id,start,end,period,copy_number,consensus_size,purity,indels,trf_score,a,c,t,g,entropy,var\n")
+
+            for linha in buffer:
+                entrada.write(linha)
+            entrada.close()
+
         #treina o algoritmo com o saida treinamento
         knn.do_train("/var/www/trvarfinder.com.br/public_html/py/trf/saida_treinamento.csv")
 
@@ -45,6 +58,18 @@ class Training(object):
                         output.writelines(saida_file)
                     os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
 
+        buffer = ""
+        with open('/var/www/trvarfinder.com.br/public_html/py/trf/saida_teste.csv', "r") as entrada:
+            buffer = entrada.readlines()
+            entrada.close()
+
+        with open('/var/www/trvarfinder.com.br/public_html/py/trf/saida_teste.csv', "w") as entrada:
+            entrada.writelines(
+                "repeat_id,start,end,period,copy_number,consensus_size,purity,indels,trf_score,a,c,t,g,entropy,var\n")
+
+            for linha in buffer:
+                entrada.write(linha)
+            entrada.close()
 
         #testa o algoritmo com o saida teste
         knn.do_test("/var/www/trvarfinder.com.br/public_html/py/trf/saida_teste.csv")
