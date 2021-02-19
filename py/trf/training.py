@@ -141,8 +141,6 @@ class Training(object):
         #remove o html gerado
         os.remove(url)
 
-        repeats_table = soup.find('table')
-
         # gerando a lista em colunas repeat_id,purity,unit_size,unit_number,trf_score,score,var
         repeat_id = []
         start = []
@@ -161,7 +159,7 @@ class Training(object):
         var = []
 
         i = 0
-        for row in repeats_table.findAll("tr"):  # para tudo que estiver em <tr>
+        for row in soup.find_all("tr"):  # para tudo que estiver em <tr>
             cells = row('td')  # encontra todos os TDs
 
             if len(cells) == 12 and cells[0].find(text=True) != "Indices":  # nmero de colunas
@@ -207,6 +205,6 @@ class Training(object):
         df['var'] = var
 
         if num_csv == 0 and variable == 1:
-            df.to_csv(output_file, index=False)
+            df.to_csv(output_file, index=False, header=False)
         else:
             df.to_csv(output_file, index=False, header=False)
