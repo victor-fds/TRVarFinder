@@ -1,3 +1,4 @@
+#!/usr/bin/python3.9
 import numpy as np
 import pandas as pd
 import json
@@ -44,7 +45,7 @@ class KneighborsC(object):
         #salva os dados como resultados.json, dropa a coluna VAR e adiciona a coluna PREDICTION
         testBackup.drop(['var'], 1, inplace=True)
         testBackup['prediction'] = prediction
-        testBackup.to_json('/var/www/trvarfinder.com.br/public_html/py/trf/resultados.json')
+        testBackup.to_json('/var/www/trvarfinder.com.br/public_html/resultados.json')
 
     def do_train(self, train_csv):
         global knc

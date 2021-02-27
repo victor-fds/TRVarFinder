@@ -1,6 +1,6 @@
 <?php
 
-	$str = file_get_contents('/var/www/trvarfinder.com.br/public_html/py/trf/resultados.json');	
+	$str = file_get_contents('/var/www/trvarfinder.com.br/public_html/resultados.json');	
 	$json = json_decode($str, true); 
 ?>
 

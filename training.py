@@ -1,3 +1,4 @@
+#!/usr/bin/python3.9
 import os
 import re
 
@@ -18,23 +19,23 @@ class Training(object):
 
     def run_training(self):
         #cria um arquivo de saida para o treinamento
-        with open('/var/www/trvarfinder.com.br/public_html/py/trf/saida_treinamento.csv', "w") as output:
-            files = os.listdir('/var/www/trvarfinder.com.br/public_html/py/trf/')
+        with open('/var/www/trvarfinder.com.br/public_html/saida_treinamento.csv', "w") as output:
+            files = os.listdir('/var/www/trvarfinder.com.br/public_html/')
 
             #para cada arquivo de treinamento, inclui no arquivo final de treino
             for file in files:
                 if re.match(".+\d\.csv", file):
-                    with open('/var/www/trvarfinder.com.br/public_html/py/trf/' + file, "r") as saida_file:
+                    with open('/var/www/trvarfinder.com.br/public_html/' + file, "r") as saida_file:
                         #Escreve no arquivo o conteudo:
                         output.writelines(saida_file)
-                    os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
+                    os.remove("/var/www/trvarfinder.com.br/public_html/" + file)
 
         buffer = ""
-        with open('/var/www/trvarfinder.com.br/public_html/py/trf/saida_treinamento.csv', "r") as entrada:
+        with open('/var/www/trvarfinder.com.br/public_html/saida_treinamento.csv', "r") as entrada:
             buffer = entrada.readlines()
             entrada.close()
 
-        with open('/var/www/trvarfinder.com.br/public_html/py/trf/saida_treinamento.csv', "w") as entrada:
+        with open('/var/www/trvarfinder.com.br/public_html/saida_treinamento.csv', "w") as entrada:
             entrada.writelines(
                 "repeat_id,start,end,period,copy_number,consensus_size,purity,indels,trf_score,a,c,t,g,entropy,var\n")
 
@@ -43,27 +44,27 @@ class Training(object):
             entrada.close()
 
         #treina o algoritmo com o saida treinamento
-        knn.do_train("/var/www/trvarfinder.com.br/public_html/py/trf/saida_treinamento.csv")
+        knn.do_train("/var/www/trvarfinder.com.br/public_html/saida_treinamento.csv")
 
     def run_test(self):
         #cria um arquivo de saida para o treinamento
-        with open('/var/www/trvarfinder.com.br/public_html/py/trf/saida_teste.csv', "w") as output:
-            files = os.listdir('/var/www/trvarfinder.com.br/public_html/py/trf/')
+        with open('/var/www/trvarfinder.com.br/public_html/saida_teste.csv', "w") as output:
+            files = os.listdir('/var/www/trvarfinder.com.br/public_html/')
 
             #para cada arquivo de teste, inclui no arquivo final de teste
             for file in files:
                 if re.match("teste.\.csv", file):
-                    with open('/var/www/trvarfinder.com.br/public_html/py/trf/' + file, "r") as saida_file:
+                    with open('/var/www/trvarfinder.com.br/public_html/' + file, "r") as saida_file:
                         # Escreve no arquivo o conteudo:
                         output.writelines(saida_file)
-                    os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
+                    os.remove("/var/www/trvarfinder.com.br/public_html/" + file)
 
         buffer = ""
-        with open('/var/www/trvarfinder.com.br/public_html/py/trf/saida_teste.csv', "r") as entrada:
+        with open('/var/www/trvarfinder.com.br/public_html/saida_teste.csv', "r") as entrada:
             buffer = entrada.readlines()
             entrada.close()
 
-        with open('/var/www/trvarfinder.com.br/public_html/py/trf/saida_teste.csv', "w") as entrada:
+        with open('/var/www/trvarfinder.com.br/public_html/saida_teste.csv', "w") as entrada:
             entrada.writelines(
                 "repeat_id,start,end,period,copy_number,consensus_size,purity,indels,trf_score,a,c,t,g,entropy,var\n")
 
@@ -72,23 +73,23 @@ class Training(object):
             entrada.close()
 
         #testa o algoritmo com o saida teste
-        knn.do_test("/var/www/trvarfinder.com.br/public_html/py/trf/saida_teste.csv")
+        knn.do_test("/var/www/trvarfinder.com.br/public_html/saida_teste.csv")
 
     def run_trf(self, fasta_url, training_mode, variable):
         # executa a chamada para o gerar os .html
-        url = '/var/www/trvarfinder.com.br/public_html/py/trf/trf ' + fasta_url + ' 2 5 5 80 10 40 2000 -l 6'
+        url = '/var/www/trvarfinder.com.br/public_html/trf ' + fasta_url + ' 2 5 5 80 10 40 2000 -l 6'
         os.system(url)
 
-        files = os.listdir('/var/www/trvarfinder.com.br/public_html/py/trf/')
+        files = os.listdir('/var/www/trvarfinder.com.br/public_html/')
 
         #deleta os .txt que no estao sendo utilizados
         for file in files:
             if re.match(".+\.txt\.html", file):
-                os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
+                os.remove("/var/www/trvarfinder.com.br/public_html/" + file)
                 files.remove(file)
             else:
                 if re.match(".+summary.+\.html", file):
-                    os.remove("/var/www/trvarfinder.com.br/public_html/py/trf/" + file)
+                    os.remove("/var/www/trvarfinder.com.br/public_html/" + file)
                     files.remove(file)
 
         tr_table_files = []
@@ -106,7 +107,7 @@ class Training(object):
             for file in files:
                 if re.match(".+\.html", file):
                     tr_table_files.append(file)
-                    tr_table_out.append("/var/www/trvarfinder.com.br/public_html/py/trf/treinamento" + str(i) + ".csv")
+                    tr_table_out.append("/var/www/trvarfinder.com.br/public_html/treinamento" + str(i) + ".csv")
                     i += 1
         else:
             # pode substituir
@@ -115,7 +116,7 @@ class Training(object):
             for file in files:
                 if re.match(".+\.html", file):
                     tr_table_files.append(file)
-                    tr_table_out.append("/var/www/trvarfinder.com.br/public_html/py/trf/teste" + str(i) + ".csv")
+                    tr_table_out.append("/var/www/trvarfinder.com.br/public_html/teste" + str(i) + ".csv")
                     i += 1
 
 
@@ -123,7 +124,7 @@ class Training(object):
         # para cada .html gera um .csv
         i = 0
         for file in tr_table_files:
-            self.__create_csv_file('/var/www/trvarfinder.com.br/public_html/py/trf/' + file, tr_table_out[i], i, variable)
+            self.__create_csv_file('/var/www/trvarfinder.com.br/public_html/' + file, tr_table_out[i], i, variable)
             i += 1
 
         #se no for treinamento, ao rodar o TRF j realiza a classificao/regreso

@@ -1,6 +1,8 @@
-
 <?php
+	
 	session_start();
+	error_reporting(E_ALL);
+
 
 	if(!empty($_POST['fasta']) && !empty($_POST['algoritmo'])){
 
@@ -8,25 +10,23 @@
 		$string = explode("\n", $string);
 
 		$check = ($string[0][0] == '>' && ($string[1][0] == 'A' || $string[1][0] == 'C' || $string[1][0] == 'T' || $string[1][0] == 'G'));
-		
-		if($check){
-			$arquivo = fopen('/var/www/trvarfinder.com.br/public_html/py/trf/testar.fasta','w');
 
+		if($check){
+			$arquivo = fopen('/var/www/trvarfinder.com.br/public_html/testar.fasta','w');
 			if($arquivo != false){
 				fwrite($arquivo, strtoupper($_POST['fasta']));
 				fclose($arquivo);
 
-				$caminho = dirname(__FILE__);
-				$command = "python /var/www/trvarfinder.com.br/public_html/py/trf/main.py /var/www/trvarfinder.com.br/public_html/py/trf/testar.fasta";
-				$output = passthru($command);
-
+				$command = "/usr/bin/python3.9 /var/www/trvarfinder.com.br/public_html/main.py 2>&1";
+				$output = shell_exec($command);
+				//echo "saida: " . $output;
 				header("location: resultados");
 			} else
-				$error = 1;
+				$error1 = 1;
 		} else 
-			$error = 1;
+			$error2 = 1;
 	} else
-		$error = 1;
+		$error3 = 1;
 ?>
 
 <html>
